@@ -11,3 +11,5 @@ CTestTestfile.cmake
 _deps
 *.xml
 /task1/cmake-build-debug
+/task1/html
+/task1/latex
