@@ -1,0 +1,13 @@
+# Doxyfile 1.8.17
+
+# Название проекта
+PROJECT_NAME           = "Sample C++ Project"
+OUTPUT_DIRECTORY       = docs
+INPUT                  = include src
+RECURSIVE              = YES
+EXTRACT_ALL            = YES
+
+# Настройки для HTML-документации
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+GENERATE_LATEX         = NO
