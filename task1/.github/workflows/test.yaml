@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake g++ libgtest-dev doxygen
+
+      - name: Set up CMake
+        run: cmake -S . -B build
+
+      - name: Build project
+        run: cmake --build build -- -j
+
+      - name: Run tests
+        run: ./build/test_add
+
+      - name: Run benchmarks
+        run: ./build/benchmark_add --benchmark_format=json --benchmark_out=benchmark_results.json
+
+      - name: Generate Doxygen documentation
+        run: cmake --build build --target doc
+
+      - name: Deploy Documentation to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{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}}
+          publish_dir: ./docs/html
